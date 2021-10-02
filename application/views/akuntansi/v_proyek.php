@@ -98,7 +98,7 @@
         <!--begin::Page title-->
         <div class="page-title d-flex flex-column me-3">
             <!--begin::Title-->
-            <h1 class="d-flex text-white fw-bolder my-1 fs-3">Buku Besar</h1>
+            <h1 class="d-flex text-white fw-bolder my-1 fs-3">Kas Proyek</h1>
             <!--end::Title-->
             <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">
                 <!--begin::Item-->
@@ -120,7 +120,7 @@
                 </li>
                 <!--end::Item-->
                 <!--begin::Item-->
-                <li class="breadcrumb-item text-white opacity-75">Buku Besar</li>
+                <li class="breadcrumb-item text-white opacity-75">Proyek</li>
                 <!--end::Item-->
             </ul>
             <!--end::Breadcrumb-->
@@ -154,10 +154,10 @@
                     <!--begin::Col-->
                     <div class="col-md-3">
                         <select name="akun" id="akun" class="form-select form-select-solid menu_filter select2 akun" style="width: 100%;" required>
-                            <option value="">-- Akun --</option>
-                            <?php foreach (akun_list() as $row) {
+                            <option value="">-- Nomor --</option>
+                            <?php foreach (proyek_list() as $row) {
                             ?>
-                                <option value="<?= $row->AKUN_ID; ?>"><?= $row->AKUN_NAMA; ?></option>
+                                <option value="<?= $row->PENAWARAN_ID; ?>"><?= $row->PENAWARAN_NOMOR; ?> - <?= $row->RELASI[0]->MASTER_RELASI_NAMA; ?></option>
                             <?php
                             }
                             ?>
@@ -187,7 +187,7 @@
 
                                     <th><?= $this->lang->line('tanggal'); ?></th>
                                     <th><?= $this->lang->line('keterangan'); ?></th>
-                                    <th>Nomor</th>
+                                    <th>Akun</th>
                                     <th>Debet</th>
                                     <th>Kredit</th>
                                     <th>Saldo</th>
@@ -257,7 +257,7 @@
     function buku_besar_list() {
         $.ajax({
             type: 'POST',
-            url: "<?php echo base_url() ?>index.php/akuntansi/buku_besar/list?akun=" + $(".akun").val() + "",
+            url: "<?php echo base_url() ?>index.php/akuntansi/proyek/list?akun=" + $(".akun").val() + "",
             async: false,
             dataType: 'json',
             data: {
@@ -310,7 +310,7 @@
                         if (data['data'][i].PENAWARAN.length === 0) {
                             var penawaran = ""
                         } else {
-                            var penawaran = data['data'][i].PENAWARAN[0].PENAWARAN_NOMOR
+                            var penawaran = data['data'][i].PENAWARAN[0].AKUN_NAMA
                         }
 
 
@@ -339,7 +339,7 @@
     $('#submit').submit(function(e) {
         e.preventDefault();
         $.ajax({
-            url: '<?php echo base_url(); ?>index.php/akuntansi/buku_besar/add?akun=' + $(".akun").val() + '',
+            url: '<?php echo base_url(); ?>index.php/akuntansi/proyek/add?akun=' + $(".akun").val() + '',
             type: "post",
             data: new FormData(this),
             processData: false,
@@ -359,7 +359,7 @@
     $('#submit_transfer').submit(function(e) {
         e.preventDefault();
         $.ajax({
-            url: '<?php echo base_url(); ?>index.php/akuntansi/buku_besar/transfer',
+            url: '<?php echo base_url(); ?>index.php/akuntansi/proyek/transfer',
             type: "post",
             data: new FormData(this),
             processData: false,
@@ -388,7 +388,7 @@
             if (result.isConfirmed) {
                 $.ajax({
                     type: 'ajax',
-                    url: '<?php echo base_url() ?>index.php/akuntansi/buku_besar/hapus/' + id,
+                    url: '<?php echo base_url() ?>index.php/akuntansi/proyek/hapus/' + id,
                     beforeSend: function() {
                         memuat()
                     },

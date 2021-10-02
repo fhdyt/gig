@@ -1,5 +1,5 @@
 <?php
-class Buku_besarModel extends CI_Model
+class ProyekModel extends CI_Model
 {
 
     public function list($akun)
@@ -22,20 +22,20 @@ class Buku_besarModel extends CI_Model
             SUM(BUKU_BESAR_DEBET) AS DEBET 
             FROM 
             BUKU_BESAR WHERE 
-            AKUN_ID="' . $akun . '" 
+            PENAWARAN_ID="' . $akun . '" 
             AND RECORD_STATUS="AKTIF" 
             AND BUKU_BESAR_TANGGAL < "' . $tanggal_dari . '"
             ORDER BY BUKU_BESAR_TANGGAL ASC')->result();
 
         $hasil['data'] = $this->db->query('SELECT * FROM 
         BUKU_BESAR WHERE 
-        AKUN_ID="' . $akun . '" 
+        PENAWARAN_ID="' . $akun . '" 
         AND NOT (BUKU_BESAR_KREDIT=0 AND BUKU_BESAR_DEBET =0)
         AND RECORD_STATUS="AKTIF" 
         ' . $tanggal . '
         ORDER BY ENTRI_WAKTU ASC')->result();
         foreach ($hasil['data'] as $row) {
-            $row->PENAWARAN = $this->db->query('SELECT * FROM PENAWARAN WHERE PENAWARAN_ID="' . $row->PENAWARAN_ID . '" AND RECORD_STATUS="AKTIF"')->result();
+            $row->PENAWARAN = $this->db->query('SELECT * FROM AKUN WHERE AKUN_ID="' . $row->AKUN_ID . '" AND RECORD_STATUS="AKTIF"')->result();
             $row->TANGGAL = tanggal($row->BUKU_BESAR_TANGGAL);
             $row->SALDO = $row->BUKU_BESAR_DEBET - $row->BUKU_BESAR_KREDIT;
         }

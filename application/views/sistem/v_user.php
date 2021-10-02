@@ -2,7 +2,6 @@
     <div class="modal-dialog modal-dialog-centered mw-650px">
         <div class="modal-content">
 
-
             <div class="modal-body">
                 <div class="mb-13 text-center">
                     <!--begin::Title-->
@@ -166,8 +165,7 @@
                                     <th class="min-w-125px">No.</th>
                                     <th class="min-w-125px">Nama</th>
                                     <th class="min-w-125px">Username</th>
-                                    <th class="min-w-125px">ID User</th>
-                                    <th class="text-end min-w-100px">Actions</th>
+                                    <th class="text-end min-w-100px"></th>
                                 </tr>
                                 <!--end::Table row-->
                             </thead>
@@ -219,11 +217,9 @@
                             "<td>" + no++ + ".</td>" +
                             "<td>" + data[i].USER_NAMA + "</td>" +
                             "<td>" + data[i].USER_USERNAME + "</td>" +
-                            "<td>" + data[i].USER_ID + "</td>" +
-                            "<td>" + data[i].PERUSAHAAN_KODE + "</td>" +
-                            "<td><a class='btn btn-danger mb-2 btn-sm' onclick='hapus(\"" + data[i].USER_ID + "\")'><i class='fas fa-trash'></i> Hapus</a> " +
-                            "<a class='btn btn-warning mb-2 btn-sm' onclick='detail(\"" + data[i].USER_ID + "\")'><i class='fas fa-edit'></i> Edit</a> " +
-                            "<a class='btn btn-success mb-2 btn-sm' href='<?php echo base_url(); ?>sistem/user/akses/" + data[i].USER_ID + "'><i class='fas fa-star'></i> Akses</a></td>" +
+                            "<td><a class='btn btn-danger mb-2 btn-sm btn-block' onclick='hapus(\"" + data[i].USER_ID + "\")'><i class='fas fa-trash'></i> Hapus</a> " +
+                            "<a class='btn btn-warning mb-2 btn-sm btn-block' onclick='detail(\"" + data[i].USER_ID + "\")'><i class='fas fa-edit'></i> Edit</a> " +
+                            "<a class='btn btn-success mb-2 btn-sm btn-block' href='<?php echo base_url(); ?>sistem/user/akses/" + data[i].USER_ID + "'><i class='fas fa-star'></i> Akses</a></td>" +
                             "</tr>");
                     }
                 }

@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Buku_besar extends CI_Controller
+class Proyek extends CI_Controller
 {
 
     /**
@@ -22,51 +22,50 @@ class Buku_besar extends CI_Controller
     function __construct()
     {
         parent::__construct();
-        $this->load->model('akuntansi/Buku_besarModel');
+        $this->load->model('akuntansi/ProyekModel');
         $this->load->model('LoginModel');
         $this->LoginModel->cek_login();
     }
 
     public function index()
     {
-        $data['surat_jalan'] = $this->Buku_besarModel->surat_jalan_3();
-        //        print_r($data['surat_jalan']);
+        $data['surat_jalan'] = $this->ProyekModel->surat_jalan_3();
         $this->load->view('_template/header');
-        $this->load->view('akuntansi/v_buku_besar', $data);
+        $this->load->view('akuntansi/v_proyek', $data);
         $this->load->view('_template/footer');
     }
 
     public function list()
     {
         $akun = $_GET['akun'];
-        $data = $this->Buku_besarModel->list($akun);
+        $data = $this->ProyekModel->list($akun);
         echo json_encode($data);
     }
 
     public function add()
     {
         $akun = $_GET['akun'];
-        $data = $this->Buku_besarModel->add($akun);
+        $data = $this->ProyekModel->add($akun);
         return $data;
     }
 
     public function transfer()
     {
-        $data = $this->Buku_besarModel->transfer();
+        $data = $this->ProyekModel->transfer();
         return $data;
     }
 
     public function hapus()
     {
         $id = $this->uri->segment('4');
-        $data = $this->Buku_besarModel->hapus($id);
+        $data = $this->ProyekModel->hapus($id);
         echo json_encode($data);
     }
 
     public function detail()
     {
         $id = $this->uri->segment('4');
-        $data = $this->Buku_besarModel->detail($id);
+        $data = $this->ProyekModel->detail($id);
         echo json_encode($data);
     }
 }

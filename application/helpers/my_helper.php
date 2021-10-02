@@ -417,6 +417,19 @@ if (!function_exists('karyawan_list')) {
     return $hasil;
   }
 }
+if (!function_exists('proyek_list')) {
+  function proyek_list()
+  {
+    $CI = &get_instance();
+    $CI->load->database();
+    $hasil = $CI->db->query('SELECT * FROM PENAWARAN WHERE RECORD_STATUS="AKTIF" ORDER BY PENAWARAN_NOMOR DESC ')->result();
+    foreach ($hasil as $row) {
+      $relasi = $CI->db->query('SELECT * FROM MASTER_RELASI WHERE MASTER_RELASI_ID="' . $row->MASTER_RELASI_ID . '" AND RECORD_STATUS="AKTIF"')->result();
+      $row->RELASI = $relasi;
+    }
+    return $hasil;
+  }
+}
 if (!function_exists('relasi_list')) {
   function relasi_list()
   {
@@ -495,23 +508,23 @@ if (!function_exists('nomor_surat_jalan')) {
     }
   }
 }
-if (!function_exists('nomor_faktur')) {
-  function nomor_faktur($tanggal)
+if (!function_exists('nomor_penawaran')) {
+  function nomor_penawaran($tanggal)
   {
     $CI = &get_instance();
 
     $bulan = date("m", strtotime($tanggal));
     $tahun = date("y", strtotime($tanggal));
-    $nomor = "INV/" . $CI->session->userdata('PERUSAHAAN_KODE') . "/" . $bulan . "-" . $tahun . "";
+    $nomor = "INV/GIG/" . $bulan . "-" . $tahun . "";
 
     $CI->load->database();
-    $hasil = $CI->db->query('SELECT * FROM FAKTUR WHERE FAKTUR_NOMOR LIKE "%' . $nomor . '%" AND RECORD_STATUS="AKTIF" AND PERUSAHAAN_KODE="' . $CI->session->userdata('PERUSAHAAN_KODE') . '" ORDER BY FAKTUR_NOMOR DESC ')->result();
+    $hasil = $CI->db->query('SELECT * FROM PENAWARAN WHERE PENAWARAN_NOMOR LIKE "%' . $nomor . '%" AND RECORD_STATUS="AKTIF"  ORDER BY PENAWARAN_NOMOR DESC ')->result();
     if (empty($hasil)) {
-      return "0001/INV/" . $CI->session->userdata('PERUSAHAAN_KODE') . "/" . $bulan . "-" . $tahun . "";
+      return "0001/INV/GIG/" . $bulan . "-" . $tahun . "";
     } else {
-      $nomor = explode("/", $hasil[0]->FAKTUR_NOMOR);
+      $nomor = explode("/", $hasil[0]->PENAWARAN_NOMOR);
       $nomorbaru = $nomor[0] + 1;
-      return sprintf("%04d", $nomorbaru) . "/INV/" . $CI->session->userdata('PERUSAHAAN_KODE') . "/" . $bulan . "-" . $tahun . "";
+      return sprintf("%04d", $nomorbaru) . "/INV/GIG/" . $bulan . "-" . $tahun . "";
     }
   }
 }

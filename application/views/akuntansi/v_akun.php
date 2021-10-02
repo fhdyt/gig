@@ -1,25 +1,39 @@
-<div class="modal fade" id="akunModal">
-    <div class="modal-dialog">
+<div class="modal fade" tabindex="-1" id="akunModal">
+    <div class="modal-dialog modal-dialog-centered mw-650px">
         <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Tambah Akun</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
+
             <div class="modal-body">
+                <div class="mb-13 text-center">
+                    <!--begin::Title-->
+                    <h1 class="mb-3">User</h1>
+                    <!--end::Title-->
+                    <!--begin::Description-->
+                    <div class="text-muted fw-bold fs-5">Tambah / Edit User
+                    </div>
+                    <!--end::Description-->
+                </div>
                 <form id="submit">
-                    <div class="form-group">
-                        <input type="hidden" class="form-control id" name="id" autocomplete="off">
+                    <input type="hidden" class="form-control id" name="id" autocomplete="off">
+                    <!--begin::Input group-->
+                    <div class="d-flex flex-column mb-8 fv-row">
+                        <!--begin::Label-->
+                        <label class="d-flex align-items-center fs-6 fw-bold mb-2">
+                            <span class="required">Nama</span>
+                            <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Specify a target name for future usage and reference"></i>
+                        </label>
+                        <!--end::Label-->
+                        <input type="text" class="form-control form-control-solid nama" placeholder="Enter Target Title" name="nama" />
                     </div>
-                    <div class="form-group">
-                        <label for="exampleInputEmail1"><?= $this->lang->line('nama'); ?></label>
-                        <input type="text" class="form-control nama" name="nama" autocomplete="off" required>
-                        <small class="text-muted">*<?= $this->lang->line('wajib_isi'); ?>.</small>
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Kategori</label>
-                        <select name="kategori" id="kategori" class="form-control kategori select2" style="width: 100%;">
+                    <!--end::Input group-->
+                    <!--begin::Input group-->
+                    <div class="d-flex flex-column mb-8 fv-row">
+                        <!--begin::Label-->
+                        <label class="d-flex align-items-center fs-6 fw-bold mb-2">
+                            <span class="required">Kategori</span>
+                            <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Specify a target name for future usage and reference"></i>
+                        </label>
+                        <!--end::Label-->
+                        <select name="kategori" id="kategori" class="form-select form-select-solid kategori select2" style="width: 100%;">
 
                             <?php
                             foreach (kategori_akun() as $value => $text) {
@@ -29,62 +43,145 @@
                             }
                             ?>
                         </select>
-                        <small class="text-muted">*<?= $this->lang->line('wajib_isi'); ?>.</small>
                     </div>
-            </div>
-            <div class="modal-footer justify-content-between">
-                <button type="button" class="btn btn-default" data-dismiss="modal"><?= $this->lang->line('tutup'); ?></button>
-                <button type="submit" class="btn btn-primary"><?= $this->lang->line('simpan'); ?></button>
+                    <!--end::Input group-->
+                    <!--begin::Actions-->
+                    <div class="text-center">
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Tutup</button>
+                        <button type="submit" id="kt_modal_new_target_submit" class="btn btn-primary">
+                            <span class="indicator-label">Simpan</span>
+                            <span class="indicator-progress">Please wait...
+                                <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                        </button>
+                    </div>
+                    <!--end::Actions-->
                 </form>
             </div>
         </div>
-        <!-- /.modal-content -->
     </div>
-    <!-- /.modal-dialog -->
 </div>
-<!-- /.modal -->
-<!-- Content Wrapper. Contains page content -->
-<div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <div class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-12">
-                    <h1 class="m-0"><?= $this->lang->line('Akun'); ?></h1>
-                </div><!-- /.col -->
-            </div><!-- /.row -->
-        </div><!-- /.container-fluid -->
-    </div>
-    <!-- /.content-header -->
+<div class="toolbar py-5 py-lg-15" id="kt_toolbar">
+    <!--begin::Container-->
+    <div id="kt_toolbar_container" class="container d-flex flex-stack flex-wrap">
+        <!--begin::Page title-->
+        <div class="page-title d-flex flex-column me-3">
+            <!--begin::Title-->
+            <h1 class="d-flex text-white fw-bolder my-1 fs-3">Akun</h1>
+            <!--end::Title-->
+            <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">
+                <!--begin::Item-->
+                <li class="breadcrumb-item text-white opacity-75">
+                    <a href="../../demo2/dist/index.html" class="text-white text-hover-primary">Home</a>
+                </li>
+                <!--end::Item-->
+                <!--begin::Item-->
+                <li class="breadcrumb-item">
+                    <span class="bullet bg-white opacity-75 w-5px h-2px"></span>
+                </li>
+                <!--end::Item-->
+                <!--begin::Item-->
+                <li class="breadcrumb-item text-white opacity-75">Akuntansi</li>
+                <!--end::Item-->
+                <!--begin::Item-->
+                <li class="breadcrumb-item">
+                    <span class="bullet bg-white opacity-75 w-5px h-2px"></span>
+                </li>
+                <!--end::Item-->
+                <!--begin::Item-->
+                <li class="breadcrumb-item text-white opacity-75">Akun</li>
+                <!--end::Item-->
+            </ul>
+            <!--end::Breadcrumb-->
+        </div>
+        <div class="d-flex align-items-center py-3 py-md-1">
+            <!--begin::Wrapper-->
+            <div class="me-4">
 
-    <!-- Main content -->
-    <div class="content">
-        <div class="container-fluid">
-            <div class="card card-default color-palette-box">
-                <div class="card-body">
-                    <button type="button" class="btn btn-secondary btn_akun mb-2">Tambah Akun</button>
-                    <table id="example2" class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th>No.</th>
-                                <th><?= $this->lang->line('nama'); ?></th>
-                                <th>Kategori</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody id="zone_data">
-                            <tr>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <!-- /.card-body -->
+                <!--end::Menu-->
             </div>
-        </div><!-- /.container-fluid -->
+            <!--end::Wrapper-->
+            <!--begin::Button-->
+            <a class="btn_akun btn btn-bg-white btn-active-color-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_create_app" id="kt_toolbar_primary_button">Akun Baru</a>
+            <!--end::Button-->
+        </div>
+        <!--end::Actions-->
+        <!--end::Page title-->
+
     </div>
-    <!-- /.content -->
+    <!--end::Container-->
 </div>
-<!-- /.content-wrapper -->
+
+<div id="kt_content_container" class="d-flex flex-column-fluid align-items-start container">
+    <!--begin::Post-->
+    <div class="content flex-row-fluid" id="kt_content">
+        <!--begin::Card-->
+        <div class="card">
+            <!--begin::Card header-->
+            <div class="card-header border-0 pt-6">
+                <!--begin::Card title-->
+                <div class="card-title">
+                    <!--begin::Search-->
+                    <div class="d-flex align-items-center position-relative my-1">
+                        <!--begin::Svg Icon | path: icons/duotone/General/Search.svg-->
+                        <span class="svg-icon svg-icon-1 position-absolute ms-6">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                    <rect x="0" y="0" width="24" height="24"></rect>
+                                    <path d="M14.2928932,16.7071068 C13.9023689,16.3165825 13.9023689,15.6834175 14.2928932,15.2928932 C14.6834175,14.9023689 15.3165825,14.9023689 15.7071068,15.2928932 L19.7071068,19.2928932 C20.0976311,19.6834175 20.0976311,20.3165825 19.7071068,20.7071068 C19.3165825,21.0976311 18.6834175,21.0976311 18.2928932,20.7071068 L14.2928932,16.7071068 Z" fill="#000000" fill-rule="nonzero" opacity="0.3"></path>
+                                    <path d="M11,16 C13.7614237,16 16,13.7614237 16,11 C16,8.23857625 13.7614237,6 11,6 C8.23857625,6 6,8.23857625 6,11 C6,13.7614237 8.23857625,16 11,16 Z M11,18 C7.13400675,18 4,14.8659932 4,11 C4,7.13400675 7.13400675,4 11,4 C14.8659932,4 18,7.13400675 18,11 C18,14.8659932 14.8659932,18 11,18 Z" fill="#000000" fill-rule="nonzero"></path>
+                                </g>
+                            </svg>
+                        </span>
+                        <!--end::Svg Icon-->
+                        <input type="text" data-kt-user-table-filter="search" class="form-control form-control-solid w-880px ps-14" placeholder="Search user">
+                    </div>
+                    <!--end::Search-->
+                </div>
+                <!--begin::Card title-->
+                <!--begin::Card toolbar-->
+                <div class="card-toolbar">
+                    <!--begin::Toolbar-->
+                    <div class="d-flex justify-content-end" data-kt-user-table-toolbar="base">
+
+                    </div>
+                </div>
+                <!--end::Card toolbar-->
+            </div>
+            <!--end::Card header-->
+            <div class="card-body pt-0">
+                <!--begin::Table-->
+                <div id="kt_table_users_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+                    <div class="table-responsive">
+                        <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_table_users">
+                            <!--begin::Table head-->
+                            <thead>
+                                <!--begin::Table row-->
+                                <tr class="text-start text-muted fw-bolder fs-7 text-uppercase gs-0">
+
+                                    <th class="min-w-125px">No.</th>
+                                    <th class="min-w-125px">Nama</th>
+                                    <th class="min-w-125px">Kategori</th>
+                                    <th class="text-end min-w-100px"></th>
+                                </tr>
+                                <!--end::Table row-->
+                            </thead>
+                            <!--end::Table head-->
+                            <!--begin::Table body-->
+                            <tbody class="text-gray-600 fw-bold" id="zone_data">
+
+                            </tbody>
+                            <!--end::Table body-->
+                        </table>
+                        <!--end::Table-->
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!--end::Card-->
+    </div>
+    <!--end::Post-->
+</div>
 <script>
     $(".btn_akun").on("click", function() {
         $("#submit").trigger("reset");
@@ -114,8 +211,8 @@
                             "<td>" + no++ + ".</td>" +
                             "<td>" + data[i].AKUN_NAMA + "</td>" +
                             "<td>" + data[i].AKUN_KATEGORI + "</td>" +
-                            "<td><a class='btn btn-danger btn-sm' onclick='hapus(\"" + data[i].AKUN_ID + "\")'><i class='fas fa-trash'></i></a> " +
-                            "<a class='btn btn-warning btn-sm' onclick='detail(\"" + data[i].AKUN_ID + "\")'><i class='fas fa-edit'></i></a></td>" +
+                            "<td><a class='btn btn-danger btn-sm' onclick='hapus(\"" + data[i].AKUN_ID + "\")'><i class='fas fa-trash'></i> Hapus</a> " +
+                            "<a class='btn btn-warning btn-sm' onclick='detail(\"" + data[i].AKUN_ID + "\")'><i class='fas fa-edit'></i> Edit</a></td>" +
                             "</tr>");
                     }
                 }

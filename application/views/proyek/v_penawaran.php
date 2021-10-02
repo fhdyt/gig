@@ -1,71 +1,52 @@
-<div class="modal fade" tabindex="-1" id="relasiModal">
+<div class="modal fade" tabindex="-1" id="statusModal">
     <div class="modal-dialog modal-dialog-centered mw-650px">
         <div class="modal-content">
             <div class="modal-body">
                 <div class="mb-13 text-center">
                     <!--begin::Title-->
-                    <h1 class="mb-3">Relasi</h1>
+                    <h1 class="mb-3">Status</h1>
                     <!--end::Title-->
                     <!--begin::Description-->
-                    <div class="text-muted fw-bold fs-5">Tambah / Edit Relasi
+                    <div class="text-muted fw-bold fs-5">Tambah Status Penawaran
                     </div>
                     <!--end::Description-->
                 </div>
-                <form id="submit">
-                    <input type="hidden" class="form-control id" name="id" autocomplete="off">
+                <form id="submit_status">
+                    <input type="hidden" class="form-control id_status" name="id_status" value="" autocomplete="off">
                     <!--begin::Input group-->
+                    <!--begin::Input group-->
+                    <div class="row g-9 mb-8">
+                        <!--begin::Col-->
+                        <div class="col-md-12 fv-row">
+                            <label class="d-flex align-items-center fs-6 fw-bold mb-2">
+                                <span class="required">Tanggal</span>
+                                <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Specify a target name for future usage and reference"></i>
+                            </label>
+                            <!--end::Label-->
+                            <input type="date" class="form-control form-control-solid tanggal" placeholder="Enter Target Title" name="tanggal" />
+                        </div>
 
-                    <!--begin::Input group-->
+
+                    </div>
                     <div class="row g-9 mb-8">
                         <!--begin::Col-->
                         <div class="col-md-6 fv-row">
                             <label class="d-flex align-items-center fs-6 fw-bold mb-2">
-                                <span class="required">Nama</span>
+                                <span class="required">Status</span>
                                 <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Specify a target name for future usage and reference"></i>
                             </label>
                             <!--end::Label-->
-                            <input type="text" class="form-control form-control-solid nama" placeholder="Enter Target Title" name="nama" />
+                            <input type="text" class="form-control form-control-solid status" placeholder="Enter Target Title" name="status" />
                         </div>
                         <!--begin::Col-->
                         <div class="col-md-6 fv-row">
                             <label class="d-flex align-items-center fs-6 fw-bold mb-2">
-                                <span class="required">Alamat</span>
+                                <span class="required">Keterangan</span>
                                 <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Specify a target name for future usage and reference"></i>
                             </label>
                             <!--end::Label-->
-                            <input type="text" class="form-control form-control-solid alamat" placeholder="Enter Target Title" name="alamat" />
+                            <input type="text" class="form-control form-control-solid keterangan" placeholder="Enter Target Title" name="keterangan" />
                         </div>
-                        <!--end::Col-->
-                        <!--begin::Col-->
-                        <div class="col-md-6 fv-row">
-                            <label class="d-flex align-items-center fs-6 fw-bold mb-2">
-                                <span class="required">Telp</span>
-                                <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Specify a target name for future usage and reference"></i>
-                            </label>
-                            <!--end::Label-->
-                            <input type="text" class="form-control form-control-solid hp" placeholder="Enter Target Title" name="hp" />
-                        </div>
-                        <!--end::Col-->
-                        <!--begin::Col-->
-                        <div class="col-md-6 fv-row">
-                            <label class="d-flex align-items-center fs-6 fw-bold mb-2">
-                                <span class="required">NPWP</span>
-                                <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Specify a target name for future usage and reference"></i>
-                            </label>
-                            <!--end::Label-->
-                            <input type="text" class="form-control form-control-solid npwp" placeholder="Enter Target Title" name="npwp" />
-                        </div>
-                        <!--end::Col-->
-                        <!--begin::Col-->
-                        <div class="col-md-6 fv-row">
-                            <label class="d-flex align-items-center fs-6 fw-bold mb-2">
-                                <span class="required">KTP</span>
-                                <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Specify a target name for future usage and reference"></i>
-                            </label>
-                            <!--end::Label-->
-                            <input type="text" class="form-control form-control-solid ktp" placeholder="Enter Target Title" name="ktp" />
-                        </div>
-                        <!--end::Col-->
 
                     </div>
                     <!--end::Input group-->
@@ -80,6 +61,45 @@
                     </div>
                     <!--end::Actions-->
                 </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" tabindex="-1" id="historyModal">
+    <div class="modal-dialog modal-dialog-centered mw-650px">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="mb-13 text-center">
+                    <!--begin::Title-->
+                    <h1 class="mb-3">History</h1>
+                    <!--end::Title-->
+                    <!--begin::Description-->
+                    <div class="text-muted fw-bold fs-5">Penawaran
+                    </div>
+                    <!--end::Description-->
+                </div>
+
+                <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_table_users">
+                    <!--begin::Table head-->
+                    <thead>
+                        <!--begin::Table row-->
+                        <tr class="text-start text-muted fw-bolder fs-7 text-uppercase gs-0">
+                            <th>No.</th>
+                            <th>Tanggal</th>
+                            <th>Status</th>
+                            <th>Keterangan</th>
+                        </tr>
+                        <!--end::Table row-->
+                    </thead>
+                    <!--end::Table head-->
+                    <!--begin::Table body-->
+                    <tbody class="text-gray-600 fw-bold" id="zone_data_history">
+
+                    </tbody>
+                    <!--end::Table body-->
+                </table>
+                <!--end::Table-->
+
             </div>
         </div>
     </div>
@@ -182,8 +202,14 @@
                                 <!--begin::Table row-->
                                 <tr class="text-start text-muted fw-bolder fs-7 text-uppercase gs-0">
                                     <th>No.</th>
-                                    <th><?= $this->lang->line('nama'); ?></th>
-                                    <th><?= $this->lang->line('alamat'); ?></th>
+                                    <th>Nomor Penawaran</th>
+                                    <th>Jenis</th>
+                                    <th>Tanggal</th>
+                                    <th>Relasi</th>
+                                    <th>PPN</th>
+                                    <th>PPh</th>
+                                    <th>Nilai</th>
+                                    <th>Status</th>
                                     <th></th>
                                 </tr>
                                 <!--end::Table row-->
@@ -212,24 +238,24 @@
         $("#relasiModal").modal("show")
     })
     $(function() {
-        relasi_list();
+        penawaran_list();
     });
 
     $(".filter").on("click", function() {
         memuat()
-        relasi_list();
+        penawaran_list();
     })
     $('.nama_relasi').keyup(function(e) {
         if (e.keyCode == 13) {
             memuat()
-            relasi_list()
+            penawaran_list()
         }
     });
 
-    function relasi_list() {
+    function penawaran_list() {
         $.ajax({
             type: 'POST',
-            url: "<?php echo base_url() ?>index.php/master/relasi/list",
+            url: "<?php echo base_url() ?>index.php/proyek/penawaran/list",
             async: false,
             dataType: 'json',
             data: {
@@ -244,15 +270,37 @@
                 } else {
                     var no = 1
                     for (i = 0; i < data.length; i++) {
+                        if (data[i].STATUS.length === 0) {
+                            var status = '-'
+                        } else {
+                            var status = data[i].STATUS[0].PENAWARAN_STATUS
+                        }
 
+                        if (parseInt(data[i].PENAWARAN_PPN) > 0) {
+                            var ppn = 'x'
+                        } else {
+                            var ppn = ''
+                        }
+                        if (parseInt(data[i].PENAWARAN_PPH) > 0) {
+                            var pph = 'x'
+                        } else {
+                            var pph = ''
+                        }
+                        console.log(parseInt(data[0].PENAWARAN_PPH))
                         $("tbody#zone_data").append("<tr class=''>" +
                             "<td>" + no++ + ".</td>" +
-                            "<td>" + data[i].MASTER_RELASI_NAMA + "</td>" +
-                            "<td>" + data[i].MASTER_RELASI_ALAMAT + "<br>(" + data[i].MASTER_RELASI_HP + ")</td>" +
+                            "<td>" + data[i].PENAWARAN_NOMOR + "</td>" +
+                            "<td>" + data[i].PENAWARAN_JENIS + "</td>" +
+                            "<td>" + data[i].TANGGAL + "</td>" +
+                            "<td>" + data[i].RELASI[0].MASTER_RELASI_NAMA + "</td>" +
+                            "<td>" + ppn + "</td>" +
+                            "<td>" + pph + "</td>" +
+                            "<td>" + data[i].PENAWARAN_GRANDTOTAL + "</td>" +
+                            "<td>" + status + "<br></td>" +
                             "<td>" +
-                            // "<a class='btn btn-danger btn-sm mb-2' onclick='hapus(\"" + data[i].MASTER_RELASI_ID + "\")'><i class='fas fa-trash'></i></a> " +
-
-                            "<a class='btn btn-warning btn-sm mb-2' onclick='detail(\"" + data[i].MASTER_RELASI_ID + "\")'><i class='fas fa-edit'></i> Edit</a> " +
+                            "<a class='btn btn-success btn-sm mb-2' onclick='status(\"" + data[i].PENAWARAN_ID + "\")'>Status</a> " +
+                            "<a class='btn-sm mb-2 btn btn-outline btn-outline-dashed btn-outline-primary btn-active-light-primary' onclick='history(\"" + data[i].PENAWARAN_ID + "\")'>History</a> " +
+                            "<a class='btn btn-primary btn-sm mb-2 ' href='<?= base_url(); ?>proyek/penawaran/form_penawaran/" + data[i].PENAWARAN_ID + "?'>Lihat</a> " +
                             "</td>" +
                             "</tr>");
                     }
@@ -286,6 +334,21 @@
                 Swal.fire('Berhasil', 'Relasi berhasil ditambahkan', 'success')
                 $("#relasiModal").modal("hide")
             }
+        });
+    })
+    $('#submit_status').submit(function(e) {
+        e.preventDefault();
+        $.ajax({
+            url: '<?php echo base_url(); ?>index.php/proyek/penawaran/add_status',
+            type: "post",
+            data: new FormData(this),
+            processData: false,
+            contentType: false,
+            cache: false,
+            beforeSend: function() {
+                memuat()
+            },
+            success: function(data) {}
         });
     })
 
@@ -323,6 +386,49 @@
 
             }
         })
+    }
+
+    function status(id) {
+        $("#statusModal").modal("show")
+        $(".id_status").val(id)
+
+    }
+
+    function history(id) {
+        $("#historyModal").modal("show")
+        $("tbody#zone_data_history").empty();
+        $.ajax({
+            type: 'ajax',
+            url: '<?php echo base_url() ?>index.php/proyek/penawaran/status_list/' + id,
+            beforeSend: function() {
+                memuat()
+            },
+            dataType: 'json',
+            success: function(data) {
+                console.log('adf')
+                if (data.length === 0) {
+                    $("tbody#zone_data_history").append("<td colspan='10'>Belum ada perubahan status Penawaran</td>")
+                } else {
+                    var no = 1
+                    for (i = 0; i < data.length; i++) {
+
+                        $("tbody#zone_data_history").append("<tr class=''>" +
+                            "<td>" + no++ + ".</td>" +
+                            "<td>" + data[i].TANGGAL + "</td>" +
+                            "<td>" + data[i].PENAWARAN_STATUS + "</td>" +
+                            "<td>" + data[i].PENAWARAN_STATUS_KETERANGAN + "</td>" +
+                            "</tr>");
+                    }
+                }
+            },
+            error: function(x, e) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Proses Gagal'
+                })
+            } //end error
+        });
     }
 
     function detail(id) {
