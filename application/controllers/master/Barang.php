@@ -34,9 +34,23 @@ class Barang extends CI_Controller
         $this->load->view('_template/footer');
     }
 
+    public function riwayat()
+    {
+        $this->load->view('_template/header');
+        $this->load->view('master/v_riwayat_barang');
+        $this->load->view('_template/footer');
+    }
+
     public function list()
     {
         $data = $this->BarangModel->list();
+        echo json_encode($data);
+    }
+
+    public function list_riwayat()
+    {
+        $id = $this->uri->segment('4');
+        $data = $this->BarangModel->list_riwayat($id);
         echo json_encode($data);
     }
 

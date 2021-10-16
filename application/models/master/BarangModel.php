@@ -11,9 +11,22 @@ class BarangModel extends CI_Model
         }
         $hasil = $this->db->query('SELECT * FROM MASTER_BARANG WHERE RECORD_STATUS="AKTIF"  ' . $filter . '  ORDER BY MASTER_BARANG_PRIORITAS DESC, MASTER_BARANG_NAMA ASC')->result();
         foreach ($hasil as $row) {
-            $stok = $this->db->query('SELECT SUM(STOK_BARANG_MASUK) AS MASUK, SUM(STOK_BARANG_KELUAR) AS KELUAR FROM STOK_BARANG WHERE MASTER_BARANG_ID="' . $row->MASTER_BARANG_ID . '" AND RECORD_STATUS="AKTIF" AND PERUSAHAAN_KODE="' . $this->session->userdata('PERUSAHAAN_KODE') . '"')->result();
+            $stok = $this->db->query('SELECT SUM(STOK_BARANG_MASUK) AS MASUK, SUM(STOK_BARANG_KELUAR) AS KELUAR FROM STOK_BARANG WHERE MASTER_BARANG_ID="' . $row->MASTER_BARANG_ID . '" AND RECORD_STATUS="AKTIF"')->result();
             $row->MASUK = $stok[0]->MASUK;
             $row->KELUAR = $stok[0]->KELUAR;
+        }
+        return $hasil;
+    }
+    public function list_riwayat($id)
+    {
+
+        $hasil = $this->db->query('SELECT * FROM STOK_BARANG WHERE MASTER_BARANG_ID="' . $id . '" AND RECORD_STATUS="AKTIF" ORDER BY ENTRI_WAKTU DESC')->result();
+        foreach ($hasil as $row) {
+            $relasi = $this->db->query('SELECT * FROM MASTER_RELASI WHERE MASTER_RELASI_ID="' . $row->MASTER_RELASI_ID . '" AND RECORD_STATUS="AKTIF" LIMIT 1')->result();
+            $supplier = $this->db->query('SELECT * FROM MASTER_SUPPLIER WHERE MASTER_SUPPLIER_ID="' . $row->MASTER_SUPPLIER_ID . '" AND RECORD_STATUS="AKTIF" LIMIT 1')->result();
+            $row->RELASI = $relasi;
+            $row->SUPPLIER = $supplier;
+            $row->TANGGAL = tanggal($row->STOK_BARANG_TANGGAL);
         }
         return $hasil;
     }
